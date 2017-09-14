@@ -18,6 +18,15 @@ export default {
     Todo,
     Doing,
     Done
+  },
+  computed: {
+    cobaAmbilState () {
+      return this.$store.state.count
+    }
+  },
+  created () {
+    this.$store.dispatch('getTask')
+    this.$store.dispatch('newTask', 'saya suka kamu')
   }
 }
 </script>
