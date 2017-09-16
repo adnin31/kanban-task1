@@ -25,8 +25,8 @@ export default {
     }
   },
   created () {
+    console.log(this.$store.state.task)
     this.$store.dispatch('getTask')
-    this.$store.dispatch('newTask', 'saya suka kamu')
   }
 }
 </script>

@@ -13,6 +13,7 @@
 
 <script>
 import Card from '@/components/Card'
+
 export default {
   data () {
     return {
@@ -21,6 +22,11 @@ export default {
   },
   components: {
     Card
+  },
+  computed: {
+    tasks () {
+      this.$store.getters('done')
+    }
   }
 }
 </script>

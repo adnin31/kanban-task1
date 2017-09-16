@@ -15,16 +15,16 @@
           <div class="modal-body">
             <form class="form-group">
               <label>New task</label>
-              <input type="text" name="" value="" class="form-control" placeholder="Your task">
+              <input type="text" class="form-control" placeholder="Your task" v-model="task">
               <label>Deskripsi</label>
-              <textarea  rows="3" class="form-control"></textarea>
+              <textarea  rows="3" class="form-control" v-model="deskripsi"></textarea>
               <label>Assign to</label>
-              <input type="text" name="" value="" class="form-control" placeholder="Assign To">
+              <input type="text" class="form-control" placeholder="Assign To" v-model="asign">
             </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" @click="cancel">Cancel</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" @click="save">Save</button>
           </div>
         </div>
 
@@ -35,6 +35,33 @@
 
 <script>
 export default {
+  data () {
+    return {
+      task: '',
+      deskripsi: '',
+      asign: ''
+    }
+  },
+  methods: {
+    cancel () {
+      this.task = ''
+      this.deskripsi = ''
+      this.asign = ''
+    },
+    save () {
+      var payload = {
+        task: this.task,
+        deskripsi: this.deskripsi,
+        asign: this.asign,
+        status: 'backlog'
+      }
+      this.$store.dispatch('newTask', payload)
+      this.task = ''
+      this.deskripsi = ''
+      this.asign = ''
+      this.$store.dispatch('getTask')
+    }
+  }
 }
 </script>
 
